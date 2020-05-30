@@ -4,7 +4,16 @@ export const state = () => ({
   messages: []
 })
 
-export const actions = {}
+export const actions = {
+  newMessage({ commit }, payload) {
+    try {
+      commit('SOCKET_newMessage', payload)
+    } catch (e) {
+      commit('setError', e)
+      throw e
+    }
+  }
+}
 export const mutations = {
   setUser(state, payload) {
     state.user = payload
