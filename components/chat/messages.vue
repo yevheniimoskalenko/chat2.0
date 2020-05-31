@@ -6,7 +6,10 @@
           <div class="header-message">
             <div class="autor">
               <el-avatar :size="size" :src="url"></el-avatar>
-              <span class="name">{{ message.name }}</span>
+              <div class="autor_info">
+                <span class="name">{{ message.name }}</span>
+                <small>{{ message.date | moment('from', 'now') }}</small>
+              </div>
             </div>
             <div class="date">
               <span>{{ message.date | moment('from', 'now') }}</span>
@@ -41,6 +44,15 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.autor_info {
+  display: flex;
+  flex-direction: column;
+  small {
+    margin: 6px 0 0 20px;
+    color: #2a8bf2;
+    font-size: 16px;
+  }
 }
 .autor {
   display: flex;

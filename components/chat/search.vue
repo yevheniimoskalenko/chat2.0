@@ -1,6 +1,6 @@
 <template>
   <div class="search">
-    <el-form>
+    <el-form @keyup.enter="search">
       <el-row type="flex">
         <el-col :span="20">
           <el-input v-model="controler.search" class="search_input">
@@ -34,6 +34,11 @@ export default {
           label: 'Autor'
         }
       ]
+    }
+  },
+  methods: {
+    search() {
+      console.log(this.controler.search)
     }
   }
 }

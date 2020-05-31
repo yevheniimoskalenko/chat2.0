@@ -29,6 +29,10 @@
         <i class="el-icon-setting"></i>
         <span>Settings</span>
       </el-menu-item>
+      <el-menu-item index="/logout">
+        <i class="el-icon-switch-button"></i>
+        <span>Log out</span>
+      </el-menu-item>
     </el-menu>
   </div>
 </template>
@@ -78,7 +82,7 @@
 export default {
   data() {
     return {
-      url: '@/static/34.png'
+      url: './static/34.png'
     }
   }
 }

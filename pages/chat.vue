@@ -23,6 +23,7 @@ import appMessages from '@/components/chat/messages'
 import appMessage from '@/components/chat/message'
 
 export default {
+  name: 'Chat',
   components: { appMessages, appSearch, appMessage },
   data() {
     return {

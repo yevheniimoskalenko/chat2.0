@@ -10,7 +10,13 @@
           </div>
         </div>
         <div class="settings">
-          <el-button icon="el-icon-more" circle></el-button>
+          <el-dropdown>
+            <el-button icon="el-icon-more" circle></el-button>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item icon="el-icon-close-notification">to block</el-dropdown-item>
+              <el-dropdown-item icon="el-icon-delete">remove</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
         </div>
       </div>
       <div class="messages">
@@ -63,37 +69,17 @@
           </div>
         </div>
       </div>
-      <div class="footer">
-        <div class="footer_form">
-          <el-form :model="controlers">
-            <el-row type="flex" align="middle" justify="center">
-              <el-col :span="20">
-                <el-form-item>
-                  <el-input v-model="controlers.message" resize="none" rows="3" class="textreal" placeholder="Type a message here" type="textarea"></el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="4">
-                <el-form-item>
-                  <div class="send_message">
-                    <el-button icon="el-icon-s-promotion" circle type="primary"></el-button>
-                  </div>
-                </el-form-item>
-              </el-col>
-            </el-row>
-          </el-form>
-        </div>
-      </div>
+      <app-send />
     </el-card>
   </div>
 </template>
 <script>
+import appSend from '@/components/chat/sendMessage'
 export default {
+  components: { appSend },
   data() {
     return {
-      url: 'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
-      controlers: {
-        message: ''
-      }
+      url: 'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png'
     }
   }
 }
@@ -108,23 +94,7 @@ export default {
     margin-right: 54px;
   }
 }
-.footer_form {
-  margin: 0px 40px 20px 60px;
-  border-top: 2px solid rgba(112, 124, 151, 0.15);
-}
-.textreal {
-  font-size: 20px;
-}
-textarea {
-  border: none;
-}
 
-.send_message {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .my_mess {
   display: flex;
   flex-direction: column;
