@@ -1,8 +1,8 @@
 <template>
   <div>
-    <el-row>
+    <el-row :gutter="20">
       <el-col :span="12">
-        <div class="messages">
+        <div class="chat_messages">
           <div class="header">
             <h2>Chats</h2>
             <el-button icon="el-icon-plus">Create new Chat</el-button>
@@ -11,15 +11,19 @@
           <app-messages :messages="messages" />
         </div>
       </el-col>
-      <el-col :span="12"></el-col>
+      <el-col :span="12">
+        <div class="messages"><app-message /></div>
+      </el-col>
     </el-row>
   </div>
 </template>
 <script>
 import appSearch from '@/components/chat/search'
 import appMessages from '@/components/chat/messages'
+import appMessage from '@/components/chat/message'
+
 export default {
-  components: { appMessages, appSearch },
+  components: { appMessages, appSearch, appMessage },
   data() {
     return {
       size: 54,
@@ -64,6 +68,10 @@ export default {
   font-size: 36px;
   line-height: 26px;
   font-weight: 500;
+}
+.chat_messages {
+  margin-top: 70px;
+  scroll-behavior: scroll;
 }
 .messages {
   margin-top: 70px;
