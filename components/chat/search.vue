@@ -3,7 +3,7 @@
     <el-form>
       <el-row type="flex">
         <el-col :span="20">
-          <el-input v-model="controler.search" popper-class="input_search">
+          <el-input v-model="controler.search" class="search_input">
             <i slot="prefix" class="el-input__icon el-icon-search"></i>
           </el-input>
         </el-col>

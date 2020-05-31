@@ -62,6 +62,26 @@
           </div>
         </div>
       </div>
+      <div class="footer">
+        <div class="footer_form">
+          <el-form :model="controlers">
+            <el-row type="flex" align="middle" justify="center">
+              <el-col :span="20">
+                <el-form-item>
+                  <el-input v-model="controlers.message" resize="none" rows="3" class="textreal" placeholder="Type a message here" type="textarea"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="4">
+                <el-form-item>
+                  <div class="send_message">
+                    <el-button icon="el-icon-s-promotion" circle type="primary"></el-button>
+                  </div>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </el-form>
+        </div>
+      </div>
     </el-card>
   </div>
 </template>
@@ -69,7 +89,10 @@
 export default {
   data() {
     return {
-      url: 'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png'
+      url: 'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
+      controlers: {
+        message: ''
+      }
     }
   }
 }
@@ -84,6 +107,23 @@ export default {
     margin-right: 54px;
   }
 }
+.footer_form {
+  margin: 0px 40px 20px 60px;
+  border-top: 2px solid rgba(112, 124, 151, 0.15);
+}
+.textreal {
+  font-size: 20px;
+}
+textarea {
+  border: none;
+}
+
+.send_message {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .my_mess {
   display: flex;
   flex-direction: column;
@@ -97,6 +137,7 @@ export default {
     margin-right: 54px;
   }
 }
+
 .settings .el-button {
   background: #ffffff;
   box-shadow: 0px 5px 25px rgba(42, 139, 242, 0.07), 0px 7px 25px rgba(42, 139, 242, 0.03), 0px 10px 15px rgba(0, 0, 0, 0.03);
