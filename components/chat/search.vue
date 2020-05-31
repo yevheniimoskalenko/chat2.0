@@ -26,8 +26,12 @@ export default {
       value: '',
       options: [
         {
-          value: 'Messages',
+          value: 'messages',
           label: 'Messages'
+        },
+        {
+          value: 'autor',
+          label: 'Autor'
         }
       ]
     }

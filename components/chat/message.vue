@@ -6,6 +6,7 @@
           <el-avatar :size="54" :src="url"></el-avatar>
           <div class="autor_info">
             <span>Nika Jerrardo</span>
+            <small>last online 5 hours ago</small>
           </div>
         </div>
         <div class="settings">
@@ -218,6 +219,15 @@ textarea {
     margin-left: 20px;
     font-weight: bold;
     line-height: 21px;
+  }
+  .autor_info {
+    display: flex;
+    flex-direction: column;
+    small {
+      margin-left: 20px;
+      color: #2a8bf2;
+      font-size: 16px;
+    }
   }
 }
 </style>

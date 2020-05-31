@@ -51,6 +51,10 @@ export default {
     margin-left: 20px;
   }
 }
+.date {
+  font-size: 16px;
+  color: #707c97;
+}
 .message__container {
   padding: 33px 40px;
 }
