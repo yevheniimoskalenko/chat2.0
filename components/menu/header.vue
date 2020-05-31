@@ -1,9 +1,6 @@
 <template>
-  <div>room: {{ user.room }}</div>
+  <div></div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
-export default {
-  computed: mapGetters(['user'])
-}
+export default {}
 </script>

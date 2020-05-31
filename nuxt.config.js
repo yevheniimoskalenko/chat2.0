@@ -14,22 +14,21 @@ module.exports = {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Lato:wght@300'
-      }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: { color: 'rgba(42, 139, 242, 0.15)' },
   /*
    ** Global CSS
    */
-  css: ['element-ui/lib/theme-chalk/index.css', '@/theme/index.scss'],
+  css: [
+    'element-ui/lib/theme-chalk/index.css',
+    '@/theme/index.scss',
+    'normalize.css/normalize.css',
+    '@/theme/font/stylesheet.css'
+  ],
   /*
    ** Plugins to load before mounting the App
    */

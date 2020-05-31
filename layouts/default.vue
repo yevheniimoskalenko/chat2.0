@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <el-container>
-      <el-header>
-        <app-header />
-      </el-header>
+  <div class="admin-layout-wrap">
+    <el-container :style="{ height: '100%' }">
+      <el-aside width="290px">
+        <app-aside />
+      </el-aside>
       <el-main>
         <nuxt />
       </el-main>
@@ -11,9 +11,14 @@
   </div>
 </template>
 <script>
-import appHeader from '@/components/menu/header'
-
+import appAside from '@/components/menu/aside'
 export default {
-  components: { appHeader }
+  components: { appAside }
 }
 </script>
+<style lang="scss" scoped>
+.admin-layout-wrap {
+  width: 100%;
+  height: 100vh;
+}
+</style>
