@@ -23,16 +23,11 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: [
-    'element-ui/lib/theme-chalk/index.css',
-    '@/theme/index.scss',
-    'normalize.css/normalize.css',
-    '@/theme/font/stylesheet.css'
-  ],
+  css: ['element-ui/lib/theme-chalk/index.css', '@/theme/index.scss', 'normalize.css/normalize.css', '@/theme/font/stylesheet.css'],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/element-ui', { src: '@/plugins/socket', ssr: false }],
+  plugins: ['@/plugins/element-ui', { src: '@/plugins/socket', ssr: false }, '~/plugins/vue-moment.js'],
   /*
    ** Nuxt.js dev-modules
    */

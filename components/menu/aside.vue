@@ -49,9 +49,7 @@
   height: 100%;
   background: #fff;
   overflow: hidden;
-  box-shadow: 23.8596px 5.61404px 50px rgba(0, 0, 0, 0.02),
-    35.0877px 0px 70px rgba(86, 128, 248, 0.05),
-    14.0351px 0px 25px rgba(86, 128, 248, 0.03);
+  box-shadow: 23.8596px 5.61404px 50px rgba(0, 0, 0, 0.02), 35.0877px 0px 70px rgba(86, 128, 248, 0.05), 14.0351px 0px 25px rgba(86, 128, 248, 0.03);
 }
 .el-menu {
   border: none;

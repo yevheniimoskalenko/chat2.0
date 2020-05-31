@@ -10,13 +10,7 @@
             <el-input v-model="controlers.room"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button
-              type="primary"
-              round
-              :loading="loading"
-              @click="connectRoom"
-              >Connect</el-button
-            >
+            <el-button type="primary" round :loading="loading" @click="connectRoom">Connect</el-button>
           </el-form-item>
         </el-form>
       </el-card>

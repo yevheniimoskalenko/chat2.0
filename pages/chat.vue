@@ -1,11 +1,18 @@
 <template>
   <div>
-    <div class="header">
-      <h2>Chats</h2>
-      <el-button icon="el-icon-plus">Create new Chat</el-button>
-    </div>
-    <app-search />
-    <app-messages />
+    <el-row>
+      <el-col :span="12">
+        <div class="messages">
+          <div class="header">
+            <h2>Chats</h2>
+            <el-button icon="el-icon-plus">Create new Chat</el-button>
+          </div>
+          <app-search />
+          <app-messages :messages="messages" />
+        </div>
+      </el-col>
+      <el-col :span="12"></el-col>
+    </el-row>
   </div>
 </template>
 <script>
@@ -16,7 +23,19 @@ export default {
   data() {
     return {
       size: 54,
-      url: 'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png'
+      url: 'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
+      messages: [
+        {
+          name: 'Luy Robin',
+          message: 'Most of its text is made up from sections 1.10.32–3 of Ciceros De finibus bonorum et malorum (On the Boundaries of Goods and Evils; finibus may also be translated as purposes).',
+          date: 'Sun May 31 2020 14:01:15'
+        },
+        {
+          name: 'Luy Robin',
+          message: 'Most of its text is made up from sections 1.10.32–3 of Ciceros De finibus bonorum et malorum (On the Boundaries of Goods and Evils; finibus may also be translated as purposes).',
+          date: 'Sun May 31 2020 14:01:15'
+        }
+      ]
     }
   }
 }
@@ -45,5 +64,9 @@ export default {
   font-size: 36px;
   line-height: 26px;
   font-weight: 500;
+}
+.messages {
+  margin-top: 70px;
+  scroll-behavior: scroll;
 }
 </style>
