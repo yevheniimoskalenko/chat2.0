@@ -12,7 +12,9 @@
         </div>
       </el-col>
       <el-col :span="12">
-        <div class="messages"><app-message /></div>
+        <div class="messages">
+          <app-message />
+        </div>
       </el-col>
     </el-row>
   </div>

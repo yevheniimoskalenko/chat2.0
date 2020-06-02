@@ -31,7 +31,7 @@ export default {
   name: 'Index',
   layout: 'empty',
   components: { VueRecaptcha },
-
+  auth: false,
   data() {
     return {
       loading: false,
@@ -58,6 +58,7 @@ export default {
               name: this.controlers.name
             }
             await this.$store.dispatch('create', user)
+            this.$router.push('/')
           } catch (e) {}
         }
       })

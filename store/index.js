@@ -1,6 +1,6 @@
 export const state = () => ({
   user: {},
-  error: null,
+  status: null,
   messages: []
 })
 
@@ -9,7 +9,7 @@ export const actions = {
     try {
       commit('SOCKET_newMessage', payload)
     } catch (e) {
-      commit('setError', e)
+      commit('status', e)
       throw e
     }
   },
@@ -17,14 +17,15 @@ export const actions = {
     try {
       await this.$axios.$post('/api/login', payload)
     } catch (e) {
-      commit('setError', e)
+      commit('status', e)
     }
   },
   async create({ commit }, payload) {
     try {
-      await this.$axios.$post('api/create', payload)
+      const status = await this.$axios.$post('api/create', payload)
+      commit('status', status)
     } catch (e) {
-      commit('setError', e)
+      commit('status', e)
     }
   },
   async verefy({ commit }, payload) {
@@ -37,8 +38,8 @@ export const mutations = {
   setUser(state, payload) {
     state.user = payload
   },
-  setError(state, payload) {
-    state.error = payload
+  status(state, payload) {
+    state.status = payload
   },
   SOCKET_newMessage(state, payload) {
     state.messages.push(payload)
@@ -46,5 +47,6 @@ export const mutations = {
 }
 export const getters = {
   user: (state) => state.user,
-  messages: (state) => state.messages
+  messages: (state) => state.messages,
+  status: (state) => state.status
 }

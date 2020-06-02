@@ -1,7 +1,6 @@
 const app = require('express')()
 const server = require('http').createServer(app)
 const mongoose = require('mongoose')
-// const io = require('socket.io')(server)
 
 const bodyParser = require('body-parser')
 const authLogin = require('./routes/auth')

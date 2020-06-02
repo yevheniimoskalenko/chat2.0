@@ -7,13 +7,12 @@ module.exports = async (req, res) => {
   const { email, password } = req.body
   const candidat = await User.findOne({ email })
   if (candidat) {
-    bcrypt.compare(password, candidat.password, (result) => {
+    bcrypt.compare(password, candidat.password, (err, result) => {
       if (result) {
         const token = jsonwebtoken.sign(
           {
             email,
             id: candidat._id,
-            admin: candidat.admin,
             ticket: candidat.ticket
           },
           keys.SECRET,
@@ -21,9 +20,12 @@ module.exports = async (req, res) => {
         )
         return res.json({ token })
       }
-      return res.status(401).json({ message: 'Електрона пошта ведена не вірно або пароль.' })
+      if (err) {
+        return res.status(401).json({ message: 'Електрона пошта ведена не вірно або пароль.', status: 'error' })
+      }
+      return res.status(401).json({ message: 'Електрона пошта ведена не вірно або пароль.', status: 'error' })
     })
   } else {
-    return res.status(401).json({ message: 'Електрона пошта ведена не вірно або пароль.' })
+    return res.status(401).json({ message: 'Електрона пошта ведена не вірно або пароль.', status: 'error' })
   }
 }

@@ -8,11 +8,11 @@
               <el-input v-model="controlers.email"> </el-input>
             </el-form-item>
             <el-form-item label="Password" prop="password">
-              <el-input v-model="controlers.password"></el-input>
+              <el-input v-model="controlers.password" type="password"></el-input>
             </el-form-item>
             <el-form-item>
               <el-button type="primary" round :loading="loading" @click="connectUser">Connect</el-button>
-              <nuxt-link to="/sign">go registration</nuxt-link>
+              <nuxt-link to="/register">go registration</nuxt-link>
             </el-form-item>
           </el-form>
         </el-card>
@@ -25,7 +25,7 @@
 export default {
   name: 'Index',
   layout: 'empty',
-
+  auth: false,
   data() {
     return {
       loading: false,
@@ -34,7 +34,7 @@ export default {
         password: ''
       },
       rules: {
-        email: [{ required: true }],
+        email: [{ required: true }, { type: 'email' }],
         password: [{ required: true }]
       }
     }
@@ -48,7 +48,9 @@ export default {
             password: this.controlers.password
           }
           try {
-            await this.$store.dispatch('auth/login', user)
+            const response = await this.$auth.loginWith('local', { data: user })
+            console.log(response)
+            this.$router.push('/chat')
           } catch (e) {}
         }
       })

@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
   const { email, password, name } = req.body
   const candidat = await User.findOne({ email })
   if (candidat) {
-    res.status(409).json({ message: 'Користувач з електроною поштою, уже зареєстрований був раніше.' })
+    res.status(409).json({ message: 'Користувач з електроною поштою, уже зареєстрований був раніше.', status: 'error' })
   } else {
     const user = new User({
       email,
@@ -13,6 +13,6 @@ module.exports = async (req, res) => {
       name
     })
     await user.save()
-    return res.status(201).json(user)
+    return res.status(201).json({ status: 'success', message: 'user create' })
   }
 }
