@@ -12,6 +12,25 @@ export const actions = {
       commit('setError', e)
       throw e
     }
+  },
+  async login({ commit }, payload) {
+    try {
+      await this.$axios.$post('/api/login', payload)
+    } catch (e) {
+      commit('setError', e)
+    }
+  },
+  async create({ commit }, payload) {
+    try {
+      await this.$axios.$post('api/create', payload)
+    } catch (e) {
+      commit('setError', e)
+    }
+  },
+  async verefy({ commit }, payload) {
+    try {
+      return await this.$axios.$post('/api/verefy', payload)
+    } catch (e) {}
   }
 }
 export const mutations = {
