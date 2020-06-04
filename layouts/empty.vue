@@ -12,7 +12,9 @@ export default {
   },
   watch: {
     status(value) {
+      console.log(value)
       this.$message({
+        showClose: true,
         message: `${value.message}`,
         type: `${value.status}`
       })

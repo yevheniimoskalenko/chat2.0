@@ -2,34 +2,18 @@
   <div class="aside">
     <div class="avatar">
       <el-avatar :size="96" :src="url" icon="el-icon-user-solid"></el-avatar>
-      <span>Yevhenii Moskalenko</span>
+      <span>{{ name }}</span>
     </div>
     <el-menu router :style="{ height: '100%' }" :default-active="$route.path">
-      <el-menu-item index="/home">
-        <i class="el-icon-menu"></i>
-        <span>home</span>
-      </el-menu-item>
       <el-menu-item index="/chat">
         <i class="el-icon-chat-dot-round"></i>
         <span>Chat</span>
-      </el-menu-item>
-      <el-menu-item index="/contact">
-        <i class="el-icon-user"></i>
-        <span>Contact</span>
-      </el-menu-item>
-      <el-menu-item index="/notifications">
-        <i class="el-icon-bell"></i>
-        <span>Notifications</span>
-      </el-menu-item>
-      <el-menu-item index="/calendar">
-        <i class="el-icon-date"></i>
-        <span>Calendar</span>
       </el-menu-item>
       <el-menu-item index="/settings">
         <i class="el-icon-setting"></i>
         <span>Settings</span>
       </el-menu-item>
-      <el-menu-item index="/logout">
+      <el-menu-item @click="logout">
         <i class="el-icon-switch-button"></i>
         <span>Log out</span>
       </el-menu-item>
@@ -80,9 +64,21 @@
 </style>
 <script>
 export default {
+  name: 'Aside',
   data() {
     return {
       url: './static/34.png'
+    }
+  },
+  computed: {
+    name() {
+      return this.$auth.$state.user.name
+    }
+  },
+  methods: {
+    logout() {
+      this.$auth.logout()
+      this.$router.push('/')
     }
   }
 }

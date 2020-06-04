@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
           {
             email,
             id: candidat._id,
-            ticket: candidat.ticket
+            name: candidat.name
           },
           keys.SECRET,
           { expiresIn: 60 * 60 * 1000 }

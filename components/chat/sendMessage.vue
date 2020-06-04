@@ -5,7 +5,9 @@
         <el-row type="flex" align="middle" justify="center">
           <el-col :span="20">
             <el-form-item>
-              <el-input v-model="controlers.message" resize="none" rows="3" class="textreal" placeholder="Type a message here" type="textarea"></el-input>
+              <div class="textarea">
+                <el-input v-model="controlers.message" resize rows="3" placeholder="Type a message here" type="textarea"></el-input>
+              </div>
             </el-form-item>
           </el-col>
           <el-col :span="4">

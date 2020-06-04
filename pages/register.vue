@@ -10,7 +10,7 @@
             <el-form-item label="Password" prop="password">
               <el-input v-model="controlers.password" type="password" show-password></el-input>
             </el-form-item>
-            <el-form-item label="Family and name" prop="name">
+            <el-form-item label="full name" prop="name">
               <el-input v-model="controlers.name"></el-input>
             </el-form-item>
             <el-form-item>
@@ -29,9 +29,10 @@
 import VueRecaptcha from 'vue-recaptcha'
 export default {
   name: 'Index',
+  auth: false,
+  middleware: ['user'],
   layout: 'empty',
   components: { VueRecaptcha },
-  auth: false,
   data() {
     return {
       loading: false,

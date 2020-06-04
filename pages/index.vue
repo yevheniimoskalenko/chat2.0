@@ -11,7 +11,9 @@
               <el-input v-model="controlers.password" type="password"></el-input>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" round :loading="loading" @click="connectUser">Connect</el-button>
+              <vue-recaptcha ref="recaptcha" sitekey="6LealJMUAAAAAEtYcN5wjrIIPWNIZ4WeaEGVkff8" :load-recaptcha-script="true" @expired="onCaptchaExpired" @verify="onCaptchaVerified"></vue-recaptcha>
+
+              <el-button type="primary" round :loading="loading" :disabled="!verefy" @click="connectUser">Connect</el-button>
               <nuxt-link to="/register">go registration</nuxt-link>
             </el-form-item>
           </el-form>
@@ -22,13 +24,18 @@
 </template>
 
 <script>
+import VueRecaptcha from 'vue-recaptcha'
+
 export default {
   name: 'Index',
+  components: { VueRecaptcha },
   layout: 'empty',
   auth: false,
+  middleware: ['user'],
   data() {
     return {
       loading: false,
+      verefy: false,
       controlers: {
         email: '',
         password: ''
@@ -48,12 +55,19 @@ export default {
             password: this.controlers.password
           }
           try {
-            const response = await this.$auth.loginWith('local', { data: user })
-            console.log(response)
+            await this.$auth.loginWith('local', { data: user })
             this.$router.push('/chat')
           } catch (e) {}
         }
       })
+    },
+    async onCaptchaVerified(recaptchaToken) {
+      const token = { token: recaptchaToken }
+      const verefy = await this.$store.dispatch('verefy', token)
+      this.verefy = verefy.success
+    },
+    onCaptchaExpired() {
+      this.$refs.recaptcha.reset()
     }
   },
   head: {

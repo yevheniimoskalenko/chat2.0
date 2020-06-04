@@ -5,7 +5,7 @@
         <div class="chat_messages">
           <div class="header">
             <h2>Chats</h2>
-            <el-button icon="el-icon-plus">Create new Chat</el-button>
+            <app-addchat />
           </div>
           <app-search />
           <app-messages :messages="messages" />
@@ -23,10 +23,16 @@
 import appSearch from '@/components/chat/search'
 import appMessages from '@/components/chat/messages'
 import appMessage from '@/components/chat/message'
+import appAddchat from '@/components/chat/createChat'
 
 export default {
   name: 'Chat',
-  components: { appMessages, appSearch, appMessage },
+  components: { appMessages, appSearch, appMessage, appAddchat },
+  async asyncData({ store, $auth }) {
+    const messages = await store.dispatch('fetchMessage', $auth.$state.user.id)
+    return { messages }
+  },
+  middleware: ['auth'],
   data() {
     return {
       size: 54,

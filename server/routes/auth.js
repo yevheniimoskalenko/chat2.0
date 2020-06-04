@@ -11,5 +11,6 @@ router.post('/create', create)
 router.post('/login', login)
 router.post('/verefy', verefy)
 router.post('/logout', logout)
+
 router.get('/user', jwt({ secret: keys.SECRET }), (req, res, next) => res.json({ user: req.user }))
 module.exports = router

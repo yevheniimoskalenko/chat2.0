@@ -1,5 +1,5 @@
 export default function({ $auth, redirect }) {
-  if ($auth.loggendIn != null) {
+  if ($auth.$state.user != null) {
     redirect('/chat')
   }
 }

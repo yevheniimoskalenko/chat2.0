@@ -32,6 +32,29 @@ export const actions = {
     try {
       return await this.$axios.$post('/api/verefy', payload)
     } catch (e) {}
+  },
+  async findUser({ commit }, payload) {
+    try {
+      return await this.$axios.$post('/chat/finduser', payload)
+    } catch (e) {
+      commit('status', e)
+    }
+  },
+  async fetchMessage({ commit }, payload) {
+    try {
+      return await this.$axios.$get(`/chat/fetchMessage/${payload}`)
+    } catch (e) {
+      commit('status', e)
+    }
+  },
+  async createChat({ commit }, payload) {
+    try {
+      const message = await this.$axios.$post('chat/createMessage', payload)
+      console.log(message)
+      commit('status', message)
+    } catch (e) {
+      commit('status', e)
+    }
   }
 }
 export const mutations = {

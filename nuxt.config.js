@@ -39,15 +39,12 @@ module.exports = {
    ** Nuxt.js modules
    */
   modules: ['@nuxtjs/axios', '@nuxtjs/auth'],
-  router: {
-    middleware: ['auth']
-  },
   auth: {
     strategies: {
       local: {
         endpoints: {
           login: { url: '/api/login', method: 'post', propertyName: 'token' },
-          logout: { url: '/api/logout', method: 'post' },
+          logout: { url: 'api/logout', method: 'post' },
           user: { url: '/api/user', method: 'get', propertyName: 'user' }
         },
         tokenRequired: true,
@@ -57,10 +54,11 @@ module.exports = {
     },
     redirect: {
       login: '/',
-      logout: '/login',
-      user: '/chat',
-      callback: '/'
-    }
+      logout: '/',
+      callback: false,
+      home: '/'
+    },
+    plugins: ['~/plugins/auth.js']
   },
   axios: {
     proxyHeaders: false

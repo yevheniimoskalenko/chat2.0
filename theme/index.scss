@@ -27,7 +27,8 @@ body {
 .page-leave-active {
   opacity: 0;
 }
-.el-textarea__inner {
+
+.textarea .el-textarea__inner {
   border: none;
   overflow: hidden;
 }
