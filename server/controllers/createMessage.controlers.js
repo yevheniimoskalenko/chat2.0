@@ -2,19 +2,22 @@ const Message = require('../models/message.model')
 const Dialog = require('../models/dialog.model')
 module.exports = async (req, res) => {
   const { partner, author, message } = req.body
-  await Dialog.insertMany([
-    {
+
+  const findDialog = Dialog.find({ partner, author })
+  if (findDialog) {
+    const dialog = new Dialog({
       partner,
       author
-    }
-  ]).then(async (result) => {
-    await Message.insertMany([
-      {
-        text: message,
-        dialog: result[0]._id,
-        author
-      }
-    ])
-    return res.json({ message: 'Message is send', status: 'success' })
-  })
+    })
+    await dialog.save()
+
+    const messages = new Message({
+      text: message,
+      dialog: dialog._id,
+      author
+    })
+    await messages.save()
+  }
+
+  return res.json({ message: 'Message is send', status: 'success' })
 }

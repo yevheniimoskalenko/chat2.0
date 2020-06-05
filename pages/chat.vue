@@ -8,7 +8,7 @@
             <app-addchat />
           </div>
           <app-search />
-          <app-messages :messages="messages" />
+          <!-- <app-messages :messages="messages" /> -->
         </div>
       </el-col>
       <el-col :span="12">
@@ -21,18 +21,23 @@
 </template>
 <script>
 import appSearch from '@/components/chat/search'
-import appMessages from '@/components/chat/messages'
+// import appMessages from '@/components/chat/messages'
 import appMessage from '@/components/chat/message'
 import appAddchat from '@/components/chat/createChat'
 
 export default {
   name: 'Chat',
-  components: { appMessages, appSearch, appMessage, appAddchat },
-  async asyncData({ store, $auth }) {
-    const messages = await store.dispatch('fetchMessage', $auth.$state.user.id)
+  components: { appSearch, appMessage, appAddchat },
+  async asyncData({ store, $auth, $socket }) {
+    const user = {
+      id: $auth.$state.user.id,
+      name: $auth.$state.user.name
+    }
+
+    const messages = await store.dispatch('fetchMessage', user.id)
+
     return { messages }
   },
-  middleware: ['auth'],
   data() {
     return {
       size: 54,
@@ -51,6 +56,7 @@ export default {
       ]
     }
   },
+  middleware: ['auth'],
   head() {
     return {
       title: 'Chats'

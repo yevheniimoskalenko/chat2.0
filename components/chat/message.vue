@@ -21,7 +21,7 @@
       </div>
       <div class="messages">
         <div class="all__messages">
-          <div class="contant_messages">
+          <!-- <div class="contant_messages">
             <div class="autor_messages">
               <div class="avatar">
                 <el-avatar :size="36" :src="url"></el-avatar>
@@ -36,34 +36,21 @@
             <div class="autor_date">
               <span>{{ new Date() | moment('from', 'now') }}</span>
             </div>
-          </div>
-          <div class="my_mess">
-            <div class="contant_messages">
+          </div> -->
+
+          <div v-for="(message, index) in messages" :key="index" class="contant_messages">
+            <!-- -->
+            <div class="my_mess">
               <div class="my_messages">
                 <div class="my_settings">
                   <el-button icon="el-icon-more-outline" circle></el-button>
                 </div>
                 <div class="my_message">
-                  <p>1</p>
+                  <p>{{ message.text }}</p>
                 </div>
               </div>
               <div class="my_date">
-                <span>{{ new Date() | moment('from', 'now') }}</span>
-              </div>
-            </div>
-          </div>
-          <div class="my_mess">
-            <div class="contant_messages">
-              <div class="my_messages">
-                <div class="my_settings">
-                  <el-button icon="el-icon-more-outline" circle></el-button>
-                </div>
-                <div class="my_message">
-                  <p>Hello! Finally found the time to write to you) I need your help in creating interactive animations for my mobile application.</p>
-                </div>
-              </div>
-              <div class="my_date">
-                <span>{{ new Date() | moment('from', 'now') }}</span>
+                <span>{{ message.date | moment('from', 'now') }}</span>
               </div>
             </div>
           </div>
@@ -77,9 +64,15 @@
 import appSend from '@/components/chat/sendMessage'
 export default {
   components: { appSend },
+
   data() {
     return {
       url: 'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png'
+    }
+  },
+  computed: {
+    messages() {
+      return this.$store.getters.messages
     }
   }
 }

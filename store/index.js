@@ -5,14 +5,6 @@ export const state = () => ({
 })
 
 export const actions = {
-  newMessage({ commit }, payload) {
-    try {
-      commit('SOCKET_newMessage', payload)
-    } catch (e) {
-      commit('status', e)
-      throw e
-    }
-  },
   async login({ commit }, payload) {
     try {
       await this.$axios.$post('/api/login', payload)
@@ -56,6 +48,13 @@ export const actions = {
       commit('status', e)
     }
   }
+  // async sendMessage({commit}, payload){
+  //   try{
+  //     await t
+  //   }catch(e){
+  //     commit('status')
+  //   }
+  // }
 }
 export const mutations = {
   setUser(state, payload) {

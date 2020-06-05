@@ -12,7 +12,6 @@
             </el-form-item>
             <el-form-item>
               <vue-recaptcha ref="recaptcha" sitekey="6LealJMUAAAAAEtYcN5wjrIIPWNIZ4WeaEGVkff8" :load-recaptcha-script="true" @expired="onCaptchaExpired" @verify="onCaptchaVerified"></vue-recaptcha>
-
               <el-button type="primary" round :loading="loading" :disabled="!verefy" @click="connectUser">Connect</el-button>
               <nuxt-link to="/register">go registration</nuxt-link>
             </el-form-item>

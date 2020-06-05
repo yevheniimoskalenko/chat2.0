@@ -6,8 +6,8 @@ const bodyParser = require('body-parser')
 const authLogin = require('./routes/auth')
 const chat = require('./routes/chat')
 
-const io = require('socket.io')(server)
-
+const io = require('socket.io')(server, { serveClient: true })
+require('./sockets.js')(io)
 mongoose
   .connect('mongodb+srv://yevhenii:was123456789was@cluster0-vrxpp.mongodb.net/chat', {
     useNewUrlParser: true,
@@ -18,7 +18,6 @@ mongoose
     /* eslint-disable no-console */
     console.log('connect has started...')
   })
-mongoose.set('useCreateIndex', true)
 app.use(
   bodyParser.urlencoded({
     extended: false
