@@ -9,7 +9,7 @@
         <i class="el-icon-chat-dot-round"></i>
         <span>Chat</span>
       </el-menu-item>
-      <el-menu-item index="/settings">
+      <el-menu-item @click="dialogVisible = true">
         <i class="el-icon-setting"></i>
         <span>Settings</span>
       </el-menu-item>
@@ -18,6 +18,18 @@
         <span>Log out</span>
       </el-menu-item>
     </el-menu>
+    <div>
+      <el-dialog title="settings" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+        <el-upload class="avatar-uploader" action="/upload/file" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+          <img v-if="imageUrl" :src="imageUrl" class="avatars" />
+          <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+        </el-upload>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="dialogVisible = false">Cancel</el-button>
+          <el-button type="primary">Confirm</el-button>
+        </span>
+      </el-dialog>
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -61,13 +73,39 @@
 .is-active span {
   color: #409eff;
 }
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  line-height: 178px;
+  text-align: center;
+}
+.avatars {
+  width: 178px;
+  height: 178px;
+  display: block;
+}
 </style>
 <script>
 export default {
   name: 'Aside',
+  components: {},
   data() {
     return {
-      url: './static/34.png'
+      url: './static/34.png',
+      dialogVisible: false,
+      imageUrl: ''
     }
   },
   computed: {
@@ -79,6 +117,15 @@ export default {
     logout() {
       this.$auth.logout()
       this.$router.push('/')
+    },
+    handleAvatarSuccess() {},
+    beforeAvatarUpload() {},
+    handleClose(done) {
+      this.$confirm('Are you sure to close this dialog?')
+        .then((_) => {
+          done()
+        })
+        .catch((_) => {})
     }
   }
 }

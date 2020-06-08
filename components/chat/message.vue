@@ -1,5 +1,5 @@
 <template>
-  <div class="message">
+  <div class="content-message">
     <el-card :body-style="{ padding: '0px' }">
       <div class="header_message">
         <div class="autor">
@@ -21,37 +21,25 @@
       </div>
       <div class="messages">
         <div class="all__messages">
-          <!-- <div class="contant_messages">
-            <div class="autor_messages">
-              <div class="avatar">
+          <div v-for="(message, index) in messages" :key="index" class="contant_messages">
+            <div class="messages">
+              <div v-show="message.id !== $auth.$state.user.id" class="avatar">
                 <el-avatar :size="36" :src="url"></el-avatar>
               </div>
-              <div class="autor_message">
-                <p>Hello! Finally found the time to write to you) I need your help in creating interactive animations for my mobile application.</p>
-              </div>
-              <div class="autor_settings">
-                <el-button icon="el-icon-more-outline" circle></el-button>
-              </div>
-            </div>
-            <div class="autor_date">
-              <span>{{ new Date() | moment('from', 'now') }}</span>
-            </div>
-          </div> -->
-
-          <div v-for="(message, index) in messages" :key="index" class="contant_messages">
-            <!-- -->
-            <div class="my_mess">
-              <div class="my_messages">
-                <div class="my_settings">
+              <div class="settings-message">
+                <el-dropdown>
                   <el-button icon="el-icon-more-outline" circle></el-button>
-                </div>
-                <div class="my_message">
-                  <p>{{ message.text }}</p>
-                </div>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item icon="el-icon-delete">remove</el-dropdown-item>
+                  </el-dropdown-menu>
+                </el-dropdown>
               </div>
-              <div class="my_date">
-                <span>{{ message.date | moment('from', 'now') }}</span>
+              <div class="message" :class="{ owner: message.id === $auth.$state.user.id, friend: message.id !== $auth.$state.user.id }">
+                <p>{{ message.text }}</p>
               </div>
+            </div>
+            <div class="date">
+              <span>{{ message.date | moment('from', 'now') }}</span>
             </div>
           </div>
         </div>
@@ -78,27 +66,13 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.autor_date {
+.date {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   padding-top: 5px;
   span {
-    margin-right: 54px;
-  }
-}
-
-.my_mess {
-  display: flex;
-  flex-direction: column;
-}
-.my_date {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  padding-top: 5px;
-  span {
-    margin-right: 54px;
+    margin-right: 70px;
   }
 }
 
@@ -106,62 +80,51 @@ export default {
   background: #ffffff;
   box-shadow: 0px 5px 25px rgba(42, 139, 242, 0.07), 0px 7px 25px rgba(42, 139, 242, 0.03), 0px 10px 15px rgba(0, 0, 0, 0.03);
 }
-.message {
+.content-message {
   background: #fff;
 }
 .messages {
+  margin-left: 24px;
   padding: 20px 20px 20px 60px;
 }
 .contant_messages {
   margin-bottom: 15px;
 }
 
-.autor_settings {
+.settings-message {
   display: flex;
+  align-items: center;
   .el-button {
     background: none;
     border: none;
     margin-left: 18px;
   }
 }
-.my_settings {
-  display: flex;
-  .el-button {
-    background: none;
-    border: none;
-    margin-left: 18px;
-  }
+.owner {
+  background: #fff;
+  border-radius: 10px 10px 0px 10px;
+  box-shadow: 15px 15px 35px rgba(112, 124, 151, 0.05), 10px 10px 25px rgba(112, 124, 151, 0.05);
 }
-.autor_message {
-  margin-left: 24px;
-  padding: 14px 27px 25px 22px;
+.friend {
+  display: flex;
+  justify-items: flex-start;
+  color: #fff;
   background: linear-gradient(93.27deg, #60a9f6 0%, #2a8bf2 100%);
   box-shadow: 10px 10px 50px rgba(42, 139, 242, 0.1), 15px 15px 35px rgba(42, 139, 242, 0.05), 10px 10px 25px rgba(42, 139, 242, 0.1);
+
   border-radius: 0px 10px 10px 10px;
-  color: #fff;
-  p {
-    font-size: 16px;
-    line-height: 26px;
-  }
 }
-.my_message {
+
+.message {
   margin-left: 24px;
   padding: 14px 27px 25px 22px;
-  background: #ffffff;
-  box-shadow: 15px 15px 35px rgba(112, 124, 151, 0.05), 10px 10px 25px rgba(112, 124, 151, 0.05);
-  border-radius: 10px 10px 0px 10px;
   border: 1px solid rgba(112, 124, 151, 0.25);
-  color: #707c97;
   p {
     font-size: 16px;
     line-height: 26px;
   }
 }
-.autor_messages {
-  display: flex;
-  flex-direction: row;
-}
-.my_messages {
+.messages {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;

@@ -17,7 +17,8 @@ module.exports = async (req, res) => {
       author
     })
     await messages.save()
+    return res.json({ message: 'Message is send', status: 'success' })
+  } else {
+    return res.json({ message: 'Message is send', status: 'error' })
   }
-
-  return res.json({ message: 'Message is send', status: 'success' })
 }

@@ -24,6 +24,7 @@
 </template>
 <script>
 export default {
+  components: {},
   data() {
     return {
       controlers: {
@@ -35,6 +36,9 @@ export default {
     }
   },
   methods: {
+    selectedEmoji(args) {
+      console.log(args) /* return {...} */
+    },
     send() {
       this.$refs.form.validate(async (valide) => {
         if (valide) {
