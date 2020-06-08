@@ -23,7 +23,7 @@
         <div class="all__messages">
           <div v-for="(message, index) in messages" :key="index" class="contant_messages">
             <div class="messages">
-              <div v-show="message.id !== $auth.$state.user.id" class="avatar-message">
+              <div v-show="message.author !== $auth.$state.user.id" class="avatar-message">
                 <el-avatar :size="36" :src="url"></el-avatar>
               </div>
               <div class="settings-message">
@@ -34,7 +34,7 @@
                   </el-dropdown-menu>
                 </el-dropdown>
               </div>
-              <div class="message" :class="{ owner: message.id === $auth.$state.user.id, friend: message.id !== $auth.$state.user.id }">
+              <div class="message" :class="{ owner: message.author === $auth.$state.user.id, friend: message.author !== $auth.$state.user.id }">
                 <p>{{ message.text }}</p>
               </div>
             </div>

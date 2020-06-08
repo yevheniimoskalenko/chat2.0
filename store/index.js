@@ -58,10 +58,16 @@ export const mutations = {
   },
   SOCKET_newMessage(state, payload) {
     state.messages.push(payload)
+  },
+  SOCKET_history(state, payload) {
+    state.messages = payload
   }
 }
 export const getters = {
   user: (state) => state.user,
-  messages: (state) => state.messages,
+  messages: (state) => {
+    console.log(state.messages)
+    return state.messages
+  },
   status: (state) => state.status
 }

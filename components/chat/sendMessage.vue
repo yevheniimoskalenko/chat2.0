@@ -45,7 +45,7 @@ export default {
           try {
             const message = {
               text: this.controlers.message,
-              id: this.$auth.$state.user.id,
+              author: this.$auth.$state.user.id,
               name: this.$auth.$state.user.name,
               dialog: '5eda29bf43be6e1ae071f1f1'
             }

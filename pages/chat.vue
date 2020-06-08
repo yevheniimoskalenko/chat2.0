@@ -33,7 +33,6 @@ export default {
       id: $auth.$state.user.id,
       name: $auth.$state.user.name
     }
-
     const messages = await store.dispatch('fetchMessage', user.id)
 
     return { messages }
@@ -55,6 +54,18 @@ export default {
         }
       ]
     }
+  },
+  mounted() {
+    const user = {
+      id: this.$auth.$state.user.id
+    }
+    this.$socket.emit('receiveHistory', user, (data) => {
+      if (typeof data === 'string') {
+        console.error(data)
+      } else {
+        console.error(data)
+      }
+    })
   },
   middleware: ['auth'],
   head() {
