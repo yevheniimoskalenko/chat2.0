@@ -23,7 +23,7 @@
         <div class="all__messages">
           <div v-for="(message, index) in messages" :key="index" class="contant_messages">
             <div class="messages">
-              <div v-show="message.id !== $auth.$state.user.id" class="avatar">
+              <div v-show="message.id !== $auth.$state.user.id" class="avatar-message">
                 <el-avatar :size="36" :src="url"></el-avatar>
               </div>
               <div class="settings-message">
@@ -139,21 +139,26 @@ export default {
   padding: 28px 38px 28px 60px;
   border-bottom: 2px solid rgba(112, 124, 151, 0.1);
 }
+.avatar-message {
+  display: flex;
+  align-items: center;
+}
 .autor {
   display: flex;
+  align-items: center;
   .autor_info span {
     margin-left: 20px;
     font-weight: bold;
     line-height: 21px;
   }
-  .autor_info {
-    display: flex;
-    flex-direction: column;
-    small {
-      margin-left: 20px;
-      color: #2a8bf2;
-      font-size: 16px;
-    }
+}
+.autor_info {
+  display: flex;
+  flex-direction: column;
+  small {
+    margin-left: 20px;
+    color: #2a8bf2;
+    font-size: 16px;
   }
 }
 </style>

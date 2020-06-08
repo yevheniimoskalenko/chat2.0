@@ -46,7 +46,8 @@ export default {
             const message = {
               text: this.controlers.message,
               id: this.$auth.$state.user.id,
-              name: this.$auth.$state.user.name
+              name: this.$auth.$state.user.name,
+              dialog: '5eda29bf43be6e1ae071f1f1'
             }
             await this.$socket.emit('createMessage', message, (data) => {
               if (typeof data === 'string') {

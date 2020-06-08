@@ -48,13 +48,6 @@ export const actions = {
       commit('status', e)
     }
   }
-  // async sendMessage({commit}, payload){
-  //   try{
-  //     await t
-  //   }catch(e){
-  //     commit('status')
-  //   }
-  // }
 }
 export const mutations = {
   setUser(state, payload) {
