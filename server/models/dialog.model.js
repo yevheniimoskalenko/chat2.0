@@ -2,15 +2,19 @@ const { model, Schema } = require('mongoose')
 
 const dialog = new Schema(
   {
-    partner: { type: Schema.Types.ObjectId, ref: 'user' },
-    author: { type: Schema.Types.ObjectId, ref: 'user' },
+    partner: { type: Schema.Types.ObjectId, ref: 'User' },
+    author: { type: Schema.Types.ObjectId, ref: 'User' },
     messages: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'messages'
+        ref: 'Message'
       }
     ],
     readed: {
+      type: Boolean,
+      defaul: Boolean
+    },
+    block: {
       type: Boolean,
       defaul: Boolean
     }
@@ -20,4 +24,4 @@ const dialog = new Schema(
   }
 )
 
-module.exports = model('dialogs', dialog)
+module.exports = model('Dialog', dialog, 'dialogs')

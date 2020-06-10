@@ -10,7 +10,8 @@ const message = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'user'
     },
-    author: { type: Schema.Types.ObjectId, ref: 'users' },
+    author: { type: Schema.Types.ObjectId, ref: 'user' },
+    lastMessage: { type: Schema.Types.ObjectId, ref: 'message' },
     date: {
       type: Date,
       default: Date.now
@@ -20,4 +21,4 @@ const message = new Schema(
     versionKey: false
   }
 )
-module.exports = model('messages', message)
+module.exports = model('Message', message, 'messages')

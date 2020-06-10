@@ -26,7 +26,7 @@
 <script>
 export default {
   props: {
-    messages: { type: Array, required: false }
+    messages: { type: Array, required: true }
   },
   data() {
     return {

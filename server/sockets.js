@@ -29,6 +29,10 @@ module.exports = (io) => {
     })
     socket.on('receiveHistory', async () => {
       const messages = await Message.find({ dialog: '5eda29bf43be6e1ae071f1f1' })
+        .sort({ date: -1 })
+        .limit(50)
+        .sort({ date: 1 })
+        .lean()
       socket.emit('history', messages)
     })
   })
