@@ -17,7 +17,9 @@ module.exports = async (req, res) => {
       author
     })
     await messages.save()
-    return res.json({ message: 'Message is send', status: 'success' })
+    await Dialog.updateMany({ _id: dialog._id }, { $set: { lastMessage: messages._id } })
+
+    return res.json({ message: 'Message is send', status: 'success', data: `${messages}` })
   } else {
     return res.json({ message: 'Message is send', status: 'error' })
   }

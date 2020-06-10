@@ -12,12 +12,13 @@ const dialog = new Schema(
     ],
     readed: {
       type: Boolean,
-      defaul: Boolean
+      defaul: false
     },
     block: {
       type: Boolean,
       defaul: Boolean
-    }
+    },
+    lastMessage: { type: Schema.Types.ObjectId, ref: 'Message' }
   },
   {
     versionKey: false

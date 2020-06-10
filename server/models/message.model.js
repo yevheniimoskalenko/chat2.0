@@ -11,7 +11,6 @@ const message = new Schema(
       ref: 'user'
     },
     author: { type: Schema.Types.ObjectId, ref: 'user' },
-    lastMessage: { type: Schema.Types.ObjectId, ref: 'message' },
     date: {
       type: Date,
       default: Date.now

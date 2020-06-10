@@ -1,4 +1,5 @@
 const Message = require('./models/message.model')
+const Dialog = require('./models/dialog.model')
 module.exports = (io) => {
   io.on('connection', (socket) => {
     console.log('connect user')
@@ -9,7 +10,7 @@ module.exports = (io) => {
       }
       cb()
     })
-    socket.on('createMessage', (data, cb) => {
+    socket.on('createMessage', async (data, cb) => {
       if (!data.name) {
         return cb(`message is required`)
       }
@@ -23,6 +24,7 @@ module.exports = (io) => {
       })
       cb()
       newMessage.save()
+      await Dialog.updateMany({ _id: data.dialog }, { $set: { lastMessage: newMessage._id } })
     })
     socket.on('disconnect', (socket) => {
       console.log('disconnect')

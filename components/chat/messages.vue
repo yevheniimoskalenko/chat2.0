@@ -7,16 +7,16 @@
             <div class="autor">
               <el-avatar :size="size" :src="url"></el-avatar>
               <div class="autor_info">
-                <span class="name">{{ message.name }}</span>
-                <small>{{ message.date | moment('from', 'now') }}</small>
+                <span class="name">{{ message.author.name }}</span>
+                <small>{{ message.lastMessage.date | moment('from', 'now') }}</small>
               </div>
             </div>
             <div class="date">
-              <span>{{ message.date | moment('from', 'now') }}</span>
+              <!-- <span>{{ message.lastMessage.da| moment('from', 'now') }}</span> -->
             </div>
           </div>
           <div class="message">
-            <p>{{ message.message }}</p>
+            <p>{{ message.lastMessage.text }}</p>
           </div>
         </div>
       </el-card>

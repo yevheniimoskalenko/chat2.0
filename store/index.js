@@ -42,7 +42,6 @@ export const actions = {
   async createChat({ commit }, payload) {
     try {
       const message = await this.$axios.$post('chat/createMessage', payload)
-      console.log(message)
       commit('status', message)
     } catch (e) {
       commit('status', e)
