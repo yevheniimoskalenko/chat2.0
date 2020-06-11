@@ -8,7 +8,7 @@
             <app-addchat />
           </div>
           <app-search />
-          <app-messages :messages="messages" />
+          <app-messages :messages="messages" @message-saved="handleMessage" />
         </div>
       </el-col>
       <el-col :span="12">
@@ -28,10 +28,9 @@ import appAddchat from '@/components/chat/createChat'
 export default {
   name: 'Chat',
   components: { appSearch, appMessages, appMessage, appAddchat },
-  async asyncData({ store, $auth, $socket }) {
+  async asyncData({ store, $auth, $socket, $route }) {
     const user = {
-      id: $auth.$state.user.id,
-      name: $auth.$state.user.name
+      id: $auth.$state.user.id
     }
     const messages = await store.dispatch('fetchMessage', user.id)
 
@@ -41,23 +40,13 @@ export default {
     return {
       size: 54,
       url: 'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
-      messages: [
-        {
-          name: 'Luy Robin',
-          message: 'Most of its text is made up from sections 1.10.32–3 of Ciceros De finibus bonorum et malorum (On the Boundaries of Goods and Evils; finibus may also be translated as purposes).',
-          date: 'Sun May 31 2020 14:01:15'
-        },
-        {
-          name: 'Luy Robin',
-          message: 'Most of its text is made up from sections 1.10.32–3 of Ciceros De finibus bonorum et malorum (On the Boundaries of Goods and Evils; finibus may also be translated as purposes).',
-          date: 'Sun May 31 2020 14:01:15'
-        }
-      ]
+      dialogMessage: []
     }
   },
   mounted() {
     const user = {
-      id: this.$auth.$state.user.id
+      id: this.$auth.$state.user.id,
+      dialog: this.$route.query.chat
     }
     this.$socket.emit('receiveHistory', user, (data) => {
       if (typeof data === 'string') {
@@ -68,6 +57,22 @@ export default {
     })
   },
   middleware: ['auth'],
+
+  methods: {
+    handleMessage(dialogMessage) {
+      this.dialogMessage = dialogMessage
+      const user = {
+        id: this.$auth.$state.user.id,
+        dialog: this.$route.query.chat
+      }
+      this.$socket.emit('receiveHistory', user, (data) => {
+        if (typeof data === 'string') {
+          console.error(data)
+        } else {
+        }
+      })
+    }
+  },
   head() {
     return {
       title: 'Chats'

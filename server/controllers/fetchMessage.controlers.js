@@ -2,7 +2,8 @@ const Dialog = require('../models/dialog.model')
 module.exports = async (req, res) => {
   const { id } = req.params
   try {
-    await Dialog.find({ author: id })
+    await Dialog.find()
+      .or([{ author: id }, { partner: id }])
       .populate(['author', 'partner', 'lastMessage'])
       .exec(async (err, result) => {
         if (err) throw err

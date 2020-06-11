@@ -1,6 +1,6 @@
 <template>
   <div class="content-message">
-    <el-card :body-style="{ padding: '0px' }">
+    <el-card v-show="true" :body-style="{ padding: '0px' }">
       <div class="header_message">
         <div class="autor">
           <el-avatar :size="54" :src="url"></el-avatar>

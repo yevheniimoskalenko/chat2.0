@@ -2,17 +2,17 @@
   <div class="messages">
     <div v-for="message in messages" :key="message.name" class="message">
       <el-card shadow="hover">
-        <div class="message__container">
+        <div class="message__container" @click="openChat(message._id)">
           <div class="header-message">
             <div class="autor">
               <el-avatar :size="size" :src="url"></el-avatar>
               <div class="autor_info">
-                <span class="name">{{ message.author.name }}</span>
-                <small>{{ message.lastMessage.date | moment('from', 'now') }}</small>
+                <span class="name">{{ message.partner.name }}</span>
+                <small>{{ message.partner.lastDate | moment('from', 'now') }}</small>
               </div>
             </div>
             <div class="date">
-              <!-- <span>{{ message.lastMessage.da| moment('from', 'now') }}</span> -->
+              <span>{{ message.lastMessage.date | moment('from', 'now') }}</span>
             </div>
           </div>
           <div class="message">
@@ -32,6 +32,14 @@ export default {
     return {
       url: 'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
       size: 54
+    }
+  },
+  methods: {
+    async openChat(id) {
+      this.$router.push(`${this.$route.path}?chat=${id}`)
+      const storeMessage = await this.$store.dispatch('dialogMessage', id)
+      this.$emit('message-saved', storeMessage)
+      // return { storeMessage }
     }
   }
 }

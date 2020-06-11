@@ -29,8 +29,8 @@ module.exports = (io) => {
     socket.on('disconnect', (socket) => {
       console.log('disconnect')
     })
-    socket.on('receiveHistory', async () => {
-      const messages = await Message.find({ dialog: '5eda29bf43be6e1ae071f1f1' })
+    socket.on('receiveHistory', async (data) => {
+      const messages = await Message.find({ dialog: data.dialog })
         .sort({ date: -1 })
         .limit(50)
         .sort({ date: 1 })

@@ -24,7 +24,6 @@
 </template>
 <script>
 export default {
-  components: {},
   data() {
     return {
       controlers: {
@@ -47,12 +46,13 @@ export default {
               text: this.controlers.message,
               author: this.$auth.$state.user.id,
               name: this.$auth.$state.user.name,
-              dialog: '5eda29bf43be6e1ae071f1f1'
+              dialog: this.$route.query.chat
             }
             await this.$socket.emit('createMessage', message, (data) => {
               if (typeof data === 'string') {
                 console.log(data)
               } else {
+                console.log()
                 this.controlers.message = ''
               }
             })

@@ -8,9 +8,9 @@ const message = new Schema(
     },
     dialog: {
       type: Schema.Types.ObjectId,
-      ref: 'user'
+      ref: 'User'
     },
-    author: { type: Schema.Types.ObjectId, ref: 'user' },
+    author: { type: Schema.Types.ObjectId, ref: 'User' },
     date: {
       type: Date,
       default: Date.now

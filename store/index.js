@@ -46,6 +46,14 @@ export const actions = {
     } catch (e) {
       commit('status', e)
     }
+  },
+  async dialogMessage({ commit }, payload) {
+    try {
+      const allMessage = await this.$axios.$get(`chat/fetchAllMessage/${payload}`)
+      return { allMessage }
+    } catch (e) {
+      commit('status', e)
+    }
   }
 }
 export const mutations = {
